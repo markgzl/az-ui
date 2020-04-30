@@ -1,0 +1,77 @@
+$tab-default-height: 108px;
+$tab-default-width: 200px;
+$tab-default-line-height: 108px;
+$tab-default-color: 108px;
+$tab-default-active-color: 108px;
+$tab-default-active-border-color: 108px;
+$font-size-40: 40pt;
+$font-size-20: 20pt;
+$font-size-18: 18pt;
+$font-size-17: 17pt;
+$font-size-default: 14pt;
+$font-size-13: 13pt;
+$color: #353535;
+
+$font-color-black: #353535;
+$font-color-primary: #576b95;
+
+.tabbar{
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	font-size: $font-size-default;
+	color: $font-color-black;
+	text-align: center;
+}
+.tabbar-direcition-horizontal{
+	width: 100%;
+	height: $tab-default-height;
+	line-height: $tab-default-line-height;
+}
+.tabbar-direcition-vertical{
+	flex-direction: column;
+	width: $tab-default-width;
+	height: 100%;
+	line-height: $tab-default-line-height;
+
+	
+	.tabbar-item{
+		width: 100%;
+		&::after{
+			left: 10px;
+			top: 50%;
+			width: 1PX;
+			height: 0;
+			transform: translate(0,-50%);
+			transition: height .3s ease;
+		}
+	}
+	.tabbar-item__active{
+		color: $font-color-primary;
+		&::after{
+			height: 100%;
+			background-color: $font-color-primary;
+		}
+	}
+}
+.tabbar-item{
+	position: relative;
+	&::after{
+		content: '';
+		position: absolute;
+		left: 50%;
+		bottom: 0;
+		width: 0;
+		height: 1PX;
+		background-color: transparent;
+		transition: width .3s ease;
+		transform: translateX(-50%);
+	}
+}
+.tabbar-item__active{
+	color: $font-color-primary;
+	&::after{
+		width: 100%;
+		background-color: $font-color-primary;
+	}
+}

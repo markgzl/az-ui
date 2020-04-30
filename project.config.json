@@ -1,8 +1,8 @@
 {
   "miniprogramRoot": "./dist",
-  "projectname": "aoo",
+  "projectname": "az-ui",
   "description": "",
-  "appid": "touristappid",
+  "appid": "wx8307f78877e82eef",
   "setting": {
     "urlCheck": true,
     "es6": false,

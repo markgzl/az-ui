@@ -1,0 +1,32 @@
+$btnType: ('default': #888888, 'warning':#576b95, 'danger':#e64340, 'primary':#09bb07, 'success':lightblue);
+$btnSize: ('big': 17, 'default': 14, 'small': 10);
+
+
+.az-button {
+	border: 1px solid; 
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	line-height: 1;
+	margin: 30px;
+}
+@each $key,$val in $btnSize {
+	.button-size-#{$key}{
+		padding: $val + 'px' 0;
+		font-size: $val + 'PX';
+	}
+}
+
+@each $key,$val in $btnType {
+	.button-type-#{$key}{
+		background-color: $val;
+		color: #fff;
+	}
+	.button-type-#{$key}.button-disabled{
+		background-color: lighten($val, 3%);
+	}
+}
+.button-loading--icon{
+	width: 48px;
+	height: 48px;
+}

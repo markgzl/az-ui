@@ -1,20 +1,37 @@
 $btnType: ('default': #888888, 'warning':#576b95, 'danger':#e64340, 'primary':#09bb07, 'success':lightblue);
-$btnSize: ('big': 17, 'default': 14, 'small': 10);
+$btnSize: ('big': 20, 'default': 17, 'small': 14);
 
 
 .az-button {
 	border: 1px solid; 
-	display: flex;
+	display: inline-flex;
 	align-items: center;
 	justify-content: center;
 	line-height: 1;
 	margin: 30px;
+	padding: 0 30px;
+}
+.button-block{
+	display: flex;
 }
 @each $key,$val in $btnSize {
 	.button-size-#{$key}{
-		padding: $val + 'px' 0;
-		font-size: $val + 'PX';
+		padding: 1.2 * $val + px 0;
+		font-size: $val + pt;
 	}
+	.button-size-#{$key}.button-loading{
+		.button-loading--icon{
+			margin-top:  $val /2 + px;
+			margin-right: 10px;
+			width: 2 * $val + px;
+			height: 2 * $val + px;
+			transform: rotate(0deg);
+			animation: rotate 0.5s ease-in-out infinite ;
+			opacity: 0.3;
+		}
+		
+	}
+	
 }
 
 @each $key,$val in $btnType {
@@ -23,10 +40,21 @@ $btnSize: ('big': 17, 'default': 14, 'small': 10);
 		color: #fff;
 	}
 	.button-type-#{$key}.button-disabled{
-		background-color: lighten($val, 3%);
+		background-color: lighten($val, 5%);
 	}
+	.button-type-#{$key}.button-loading{
+		background-color: lighten($val, 5%);
+		
+	}
+
 }
-.button-loading--icon{
-	width: 48px;
-	height: 48px;
+
+
+@keyframes rotate {
+	0% {
+		transform: rotate(1deg);
+	}
+	100%{
+		transform: rotate(360deg);
+	}
 }

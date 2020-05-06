@@ -5,9 +5,10 @@ import { AzButton } from '../../index'
 const TabbarDemo = () => {
 	return (
 		<View>
-			<AzButton type='danger' size='small'>anniu</AzButton>
+			<AzButton type='primary' size='small' loading>anniu</AzButton>
 			<AzButton type='danger' size='big'>anniu</AzButton>
-			<AzButton type='danger' size='small' disabled={true}>anniu</AzButton>
+			<AzButton type='danger' block disabled={true}>anniu</AzButton>
+			<AzButton type='danger' loading={true}>anniu</AzButton>
 		</View>
 	)
 }

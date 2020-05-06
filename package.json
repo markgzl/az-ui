@@ -47,6 +47,7 @@
     "regenerator-runtime": "0.11.1"
   },
   "devDependencies": {
+    "@tarojs/cli": "2.1.1",
     "@tarojs/mini-runner": "2.1.1",
     "@tarojs/webpack-runner": "2.1.1",
     "@types/classnames": "^2.2.10",

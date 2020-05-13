@@ -3,7 +3,7 @@ export function isObj(x: any): boolean {
   return x !== null && (type === 'object' || type === 'function');
 }
 
-export const getClassNames = (name: string) => ({
+export const getClassNames = (name: string = 'fade') => ({
   enter: `van-${name}-enter van-${name}-enter-active enter-class enter-active-class`,
   'enter-to': `van-${name}-enter-to van-${name}-enter-active enter-to-class enter-active-class`,
   leave: `van-${name}-leave van-${name}-leave-active leave-class leave-active-class`,

@@ -1,35 +1,74 @@
-import Taro from '@tarojs/taro'
+import Taro, { useEffect, useState } from '@tarojs/taro'
 import { View } from '@tarojs/components'
+import { CommonEvent } from '@tarojs/components/types/common'
 import classnames from 'classnames'
-import { isObj, nextTick, getClassNames } from './utils'
+import { nextTick, getClassNames } from './utils'
 
 import './index.scss'
 
 interface ITransitionProps {
 	show: boolean;
-	duration: number;
-	name: string
+	name?: string;
+	onClick?: () => void
+	onTouchMove?: (e: CommonEvent) => void
 }
 
 const Transition: Taro.FC<ITransitionProps> = (props) => {
-	const { show, duration, name} = props
-	const classes = classnames('van-transition custom-class',{
-		...getClassNames(name)
-	})
-	return (
-		show ? <View className={classes}>
+	const { show, name, onTouchMove, onClick } = props
+	const [_show, setShow] = useState(show)
+	const [currentClass, setCurrentClass] = useState('leave-to')
 
-		</View> : null
+	const classes = classnames('van-transition', 'custom-class')
+	const allClasses = getClassNames(name) || {}
+	useEffect(() => {
+		console.log(99999)
+		show ? enter() : leave()
+	}, [show])
+
+	const enter = () => {
+		if (currentClass !== 'leave-to') return
+		Promise.resolve()
+			.then(nextTick)
+			.then(() => {
+				setShow(true)
+				setCurrentClass('enter')
+			}).then(nextTick)
+			.then(() => {
+				setCurrentClass('enter-to')
+			})
+
+	}
+	const leave = () => {
+		if (currentClass !== 'enter-to') return
+		Promise.resolve()
+			.then(nextTick)
+			.then(() => {
+				setShow(false)
+				setCurrentClass('leave')
+			})
+			.then(nextTick)
+			.then(() => {
+				setCurrentClass('leave-to')
+			})
+			.catch(() => { });
+	}
+
+	const handleClick = () => {
+		onClick && onClick()
+	}
+
+	return (
+		<View className={`${classes} ${allClasses[currentClass]}`} onTouchMove={onTouchMove} onClick={handleClick}></View>
 	)
 }
 
 Transition.defaultProps = {
 	show: false,
-	duration: 300,
 	name: 'fade'
 }
 
 Transition.externalClasses = ['custom-class']
+
 
 export default Transition
 

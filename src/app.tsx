@@ -28,6 +28,7 @@ class App extends Component {
    */
   config: Config = {
     pages: [
+      'pages/transition/transition',
       'pages/button/button',
       'pages/index/index',
       'pages/tabbar/tabbar'
